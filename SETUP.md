@@ -29,6 +29,16 @@ By default, **Azure** uses **live data** from the [Azure Retail Prices API](http
 
 Sync runs on startup and every 6 hours; use **Dashboard → Sync all** or `POST /admin/scrape` to refresh.
 
+## Start both (single command)
+
+From the project root (the folder that contains `backend/` and `frontend/`):
+
+```bash
+./start.sh
+```
+
+This starts the backend at http://127.0.0.1:8000 and the frontend at http://localhost:5173. Press Ctrl+C to stop both. Ensure you’ve run backend and frontend setup at least once (venv, `pip install`, `npm install`) before using `start.sh`.
+
 ## 1 · Backend
 
 **IMPORTANT:** You must run the backend from **this** project folder: `saas-pricing-comparator-v2/backend`.  
