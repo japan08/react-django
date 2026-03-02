@@ -18,19 +18,19 @@ cleanup() {
 }
 trap cleanup SIGINT SIGTERM
 
-# Backend: run from backend/ so imports resolve; use venv if present
-if [ -x "$ROOT/backend/venv/bin/python" ]; then
-  PYTHON="$ROOT/backend/venv/bin/python"
+# Backend: run from project root; use venv if present
+if [ -x "$ROOT/venv/bin/python" ]; then
+  PYTHON="$ROOT/venv/bin/python"
 else
   PYTHON="python3"
 fi
 echo "Starting backend (FastAPI) at http://127.0.0.1:8000 ..."
-(cd "$ROOT/backend" && "$PYTHON" -m uvicorn app.main:app --reload) &
+(cd "$ROOT" && "$PYTHON" -m uvicorn app.main:app --reload) &
 BACKEND_PID=$!
 
 # Frontend: npm run dev
 echo "Starting frontend (Vite) at http://localhost:5173 ..."
-(cd "$ROOT/frontend" && npm run dev) &
+(cd "$ROOT" && npm run dev) &
 FRONTEND_PID=$!
 
 wait
